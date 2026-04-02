@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# Editor
+.vscode/
+.idea/
+
+# Data
+data/
+temp_imputed.csv
+
+# Artifacts & Outputs
+artifacts/
+mlruns/
+*.log
+
+# OS specific
+.DS_Store
+Thumbs.db
