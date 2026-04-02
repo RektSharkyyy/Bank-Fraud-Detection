@@ -4,10 +4,12 @@ from abc import ABC, abstractmethod
 
 logger = logging.getLogger(__name__)
 
+
 class ModelBuilder(ABC):
     @abstractmethod
     def build_model(self):
         pass
+
 
 class XGBoostModelBuilder(ModelBuilder):
     def __init__(self, n_estimators=100, max_depth=6, learning_rate=0.1, random_state=42):

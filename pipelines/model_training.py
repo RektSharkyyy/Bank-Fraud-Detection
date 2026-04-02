@@ -6,6 +6,9 @@ import mlflow
 import mlflow.xgboost
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
+mlflow.set_tracking_uri("sqlite:///mlflow.db")
+mlflow.set_experiment("Credit_Card_Fraud_Detection")
+
 # Path setup
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'utils'))
