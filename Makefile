@@ -47,7 +47,7 @@ data-pipeline:
 
 .PHONY: data-pipeline-rebuild
 data-pipeline-rebuild:
-	@source $(VENV) && $(PYTHON) -c "from pipelines.data_pipeline import data_pipeline; data_pipeline(force_rebuild=True)"
+	@$(PYTHON) -c "from pipelines.data_pipeline import data_pipeline; data_pipeline(force_rebuild=True)"
 
 # Run training pipeline
 train-pipeline:
@@ -65,15 +65,15 @@ run-all:
 	@echo "========================================"
 	@echo "Step 1: Running data pipeline"
 	@echo "========================================"
-	@source $(VENV) && $(PYTHON) pipelines/data_pipeline.py
+	@$(PYTHON) pipelines/data_pipeline.py
 	@echo "\n========================================"
 	@echo "Step 2: Running training pipeline"
 	@echo "========================================"
-	@source $(VENV) && $(PYTHON) pipelines/training_pipeline.py
+	@$(PYTHON) pipelines/training_pipeline.py
 	@echo "\n========================================"
 	@echo "Step 3: Running streaming inference pipeline"
 	@echo "========================================"
-	@source $(VENV) && $(PYTHON) pipelines/streaming_inference_pipeline.py
+	@$(PYTHON) pipelines/streaming_inference_pipeline.py
 	@echo "\n========================================"
 	@echo "All pipelines completed successfully!"
 	@echo "========================================"
