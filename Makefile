@@ -42,7 +42,7 @@ clean:
 # Run data pipeline
 data-pipeline:
 	@echo "Start running data pipeline..."
-	python pipelines/data_pipeline.py
+	$(PYTHON) pipelines/data_pipeline.py
 	@echo "Data pipeline completed successfully!"
 
 .PHONY: data-pipeline-rebuild
@@ -52,12 +52,12 @@ data-pipeline-rebuild:
 # Run training pipeline
 train-pipeline:
 	@echo "Running training pipeline..."
-	python pipelines/model_training.py
+	$(PYTHON) pipelines/model_training.py
 
 # Run streaming inference pipeline with sample JSON
 streaming-inference:
 	@echo "Running streaming inference pipeline with sample JSON..."
-	python pipelines/inference_pipeline.py
+	$(PYTHON) pipelines/inference_pipeline.py
 
 # Run all pipelines in sequence
 run-all:
