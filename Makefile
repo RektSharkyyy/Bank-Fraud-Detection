@@ -82,7 +82,7 @@ mlflow-ui:
 	@echo "Launching MLflow UI..."
 	@echo "MLflow UI will be available at: http://localhost:$(MLFLOW_PORT)"
 	@echo "Press Ctrl+C to stop the server"
-	@mlflow ui --backend-store-uri sqlite:///mlflow.db --host 0.0.0.0 --port $(MLFLOW_PORT)
+	@$(PYTHON) -m mlflow ui --backend-store-uri sqlite:///mlflow.db --host 0.0.0.0 --port $(MLFLOW_PORT)
 
 # Stop all running MLflow servers
 stop-all:
