@@ -21,7 +21,16 @@ def run_inference(test_data_path: str):
         y_test = pd.read_csv('artifacts/data/processed/y_test.csv').values.ravel()
         logger.info("Loading trained model from MLflow...")
         
-        model_uri = f"runs:/05ef91976f5e4612815450e45da2a5ac/model"
+        mlflow.set_tracking_uri("sqlite:///mlflow.db")
+        mlflow.set_experiment("Credit_Card_Fraud_Detection")
+        
+        runs = mlflow.search_runs(order_by=["start_time desc"], max_results=1)
+        if runs.empty:
+            raise Exception("No MLflow runs found. Please train a model first.")
+        
+        latest_run_id = runs.iloc[0].run_id
+        model_uri = f"runs:/{latest_run_id}/model"
+        logger.info(f"Using model from run: {latest_run_id}")
         model = mlflow.xgboost.load_model(model_uri)
 
         # Prediction

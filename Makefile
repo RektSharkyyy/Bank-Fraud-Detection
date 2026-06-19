@@ -52,12 +52,12 @@ data-pipeline-rebuild:
 # Run training pipeline
 train-pipeline:
 	@echo "Running training pipeline..."
-	python pipelines/training_pipeline.py
+	python pipelines/model_training.py
 
 # Run streaming inference pipeline with sample JSON
 streaming-inference:
 	@echo "Running streaming inference pipeline with sample JSON..."
-	python pipelines/streaming_inference_pipeline.py
+	python pipelines/inference_pipeline.py
 
 # Run all pipelines in sequence
 run-all:
@@ -69,11 +69,11 @@ run-all:
 	@echo "\n========================================"
 	@echo "Step 2: Running training pipeline"
 	@echo "========================================"
-	@$(PYTHON) pipelines/training_pipeline.py
+	@$(PYTHON) pipelines/model_training.py
 	@echo "\n========================================"
 	@echo "Step 3: Running streaming inference pipeline"
 	@echo "========================================"
-	@$(PYTHON) pipelines/streaming_inference_pipeline.py
+	@$(PYTHON) pipelines/inference_pipeline.py
 	@echo "\n========================================"
 	@echo "All pipelines completed successfully!"
 	@echo "========================================"
@@ -82,7 +82,7 @@ mlflow-ui:
 	@echo "Launching MLflow UI..."
 	@echo "MLflow UI will be available at: http://localhost:$(MLFLOW_PORT)"
 	@echo "Press Ctrl+C to stop the server"
-	@mlflow ui --host 0.0.0.0 --port $(MLFLOW_PORT)
+	@mlflow ui --backend-store-uri sqlite:///mlflow.db --host 0.0.0.0 --port $(MLFLOW_PORT)
 
 # Stop all running MLflow servers
 stop-all:
